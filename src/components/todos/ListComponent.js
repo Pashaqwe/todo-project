@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import 'antd/dist/antd.css'
 import { Spin, List, Button } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
-import API from '../ApiComponent/api'
+import API from './api/api'
 import 'antd/dist/antd.css'
 import styled from 'styled-components'
+
 
 class ListComponent extends Component {
   state = {
