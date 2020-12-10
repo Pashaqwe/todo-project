@@ -11,14 +11,6 @@ class ListComponent extends Component {
     todos: [],
   }
 
-  componentDidMount() {
-    API.get(`todos`).then((response) => {
-      this.setState({
-        todos: response.data,
-      })
-    })
-  }
-
   renderTodos() {
     const TodoListItem = styled(List.Item)`
       display: flex;
@@ -32,6 +24,14 @@ class ListComponent extends Component {
         </Button>
       </TodoListItem>
     ))
+  }
+
+  componentDidMount() {
+    API.get(`todos`).then((response) => {
+      this.setState({
+        todos: response.data,
+      })
+    })
   }
 
   render() {
