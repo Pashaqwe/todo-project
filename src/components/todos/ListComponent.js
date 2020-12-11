@@ -18,6 +18,11 @@ const TodoSpin = styled(Spin)`
   justify-content: center;
 `
 
+const TodoListItem = styled(List.Item)`
+display: flex;
+justify-content: space-between;
+`
+
 class ListComponent extends Component {
   state = {
     todos: [],
