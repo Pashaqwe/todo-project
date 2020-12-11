@@ -19,8 +19,8 @@ const TodoSpin = styled(Spin)`
 `
 
 const TodoListItem = styled(List.Item)`
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `
 
 class ListComponent extends Component {
@@ -29,10 +29,6 @@ class ListComponent extends Component {
   }
 
   renderTodos() {
-    const TodoListItem = styled(List.Item)`
-      display: flex;
-      justify-content: space-between;
-    `
     return this.state.todos.map((item) => (
       <TodoListItem key={item.id}>
         {item.name}
@@ -52,18 +48,6 @@ class ListComponent extends Component {
   }
 
   render() {
-    const TodoList = styled(List)`
-      width: 30%;
-      margin: 40px auto;
-      font-weight: bold;
-      font-size: 20px;
-    `
-    const TodoSpin = styled(Spin)`
-      margin-top: 100px;
-      display: flex;
-      justify-content: center;
-    `
-
     if (!this.state.todos.length) {
       return <TodoSpin />
     }
