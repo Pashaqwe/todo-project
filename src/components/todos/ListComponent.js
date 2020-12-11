@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css'
-import { Spin, List, Button } from 'antd'
+import { Spin, List, Button, Input } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import API from './api'
 import 'antd/dist/antd.css'
 import styled from 'styled-components'
 
-const TodoList = styled(List)`
+const MainDiv = styled.div`
   width: 30%;
-  margin: 40px auto;
+  margin: 40px auto 10px;
+`
+
+const BottomInputAndBtnDiv = styled.div`
+  display: flex;
+`
+
+const TodoList = styled(List)`
+  margin-bottom: 10px;
   font-weight: bold;
   font-size: 20px;
 `
@@ -26,6 +34,10 @@ const TodoListItem = styled(List.Item)`
 class ListComponent extends Component {
   state = {
     todos: [],
+    newTodo: {
+      name: '',
+      done: null,
+    },
   }
 
   renderTodos() {
@@ -39,7 +51,7 @@ class ListComponent extends Component {
     ))
   }
 
-  componentDidMount() {
+  getRequest() {
     API.get(`todos`).then((response) => {
       this.setState({
         todos: response.data,
@@ -47,11 +59,40 @@ class ListComponent extends Component {
     })
   }
 
+  componentDidMount() {
+    this.getRequest()
+  }
+
+  newTodoItem = (e) => {
+    e.preventDefault()
+    this.setState({
+      newTodo: { name: e.target.value },
+    })
+  }
+
+  pushNewTodoInData = (e) => {
+    e.preventDefault()
+    API.post(`todos`, this.state.newTodo).then((response) => {
+      this.getRequest()
+    })
+    this.setState({
+      newTodo: { name: '' },
+    })
+  }
+
   render() {
     if (!this.state.todos.length) {
       return <TodoSpin />
     }
-    return <TodoList bordered>{this.renderTodos()}</TodoList>
+    return (
+      <MainDiv>
+        <TodoList bordered>{this.renderTodos()}</TodoList>
+        <BottomInputAndBtnDiv>
+          <Input type="text" onChange={this.newTodoItem}></Input>
+          <Button onClick={this.pushNewTodoInData}>Добавить</Button>
+        </BottomInputAndBtnDiv>
+      </MainDiv>
+    )
   }
 }
 
