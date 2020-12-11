@@ -2,10 +2,21 @@ import React, { Component } from 'react'
 import 'antd/dist/antd.css'
 import { Spin, List, Button } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
-import API from './api/api'
+import API from './api'
 import 'antd/dist/antd.css'
 import styled from 'styled-components'
 
+const TodoList = styled(List)`
+  width: 30%;
+  margin: 40px auto;
+  font-weight: bold;
+  font-size: 20px;
+`
+const TodoSpin = styled(Spin)`
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+`
 
 class ListComponent extends Component {
   state = {
