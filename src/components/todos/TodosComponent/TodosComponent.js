@@ -14,7 +14,6 @@ const TodoForm = styled(Form)`
 `
 const TodoInput = styled(Input)`
   display: flex;
-  min-width:inherit;
 `
 const TodoButton = styled(Button)`
   display: flex;
