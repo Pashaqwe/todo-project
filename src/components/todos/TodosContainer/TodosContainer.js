@@ -15,12 +15,9 @@ class TodosContainer extends Component {
     })
   }
 
-  onCreateTodo = (event, name) => {
+  onCreateTodo = (name) => {
     console.log(name)
-    event.preventDefault()
-    event.target.value= ''
   }
-
 
   render() {
     return (
