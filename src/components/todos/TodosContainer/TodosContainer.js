@@ -5,6 +5,7 @@ import TodosComponent from '../TodosComponent'
 class TodosContainer extends Component {
   state = {
     todos: [],
+    value:''
   }
 
   componentDidMount() {
@@ -15,14 +16,23 @@ class TodosContainer extends Component {
     })
   }
 
-  onCreateTodo = (name) => {
+  onCreateTodo = (event, name) => {
     console.log(name)
+    event.preventDefault()
+  }
+
+  onChange = (e) => {
+    this.setState({
+      value: e.target.value,
+    })
   }
   render() {
     return (
       <TodosComponent
         todos={this.state.todos}
         onCreateTodo={this.onCreateTodo}
+        onChange={this.onChange}
+        value={this.state.value}
       />
     )
   }
