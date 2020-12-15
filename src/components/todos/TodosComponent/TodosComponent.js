@@ -3,6 +3,7 @@ import 'antd/dist/antd.css'
 import { Spin, List, Button, Input } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Wrapper = styled.div`
   width: 30%;
@@ -26,7 +27,9 @@ const TodoListItem = styled(List.Item)`
 `
 
 class TodosComponent extends Component {
-  
+  state = {
+    value: '',
+  }
   renderTodos() {
     return this.props.todos.map((item) => (
       <TodoListItem key={item.id}>
@@ -38,6 +41,18 @@ class TodosComponent extends Component {
     ))
   }
 
+  onSubmit = (event, name)=>{
+    this.props.onCreateTodo(event, name)
+    this.setState({
+      value:''
+    })
+  }
+
+  onChange = (e) => {
+    this.setState({
+      value: e.target.value,
+    })
+  }
   render() {
     if (!this.props.todos.length) {
       return <TodoSpin />
@@ -46,14 +61,23 @@ class TodosComponent extends Component {
       <Wrapper>
         <TodoList bordered>{this.renderTodos()}</TodoList>
         <form
-          onSubmit={(event) => this.props.onCreateTodo(event, this.props.value)}
+          onSubmit={(event)=>this.onSubmit(event, this.state.value)}
         >
-          <Input value={this.props.value} type="text" onChange={this.props.onChange}></Input>
+          <Input
+            value={this.state.value}
+            type="text"
+            onChange={this.onChange}
+          ></Input>
           <Input type="submit" value="Отправить" />
         </form>
       </Wrapper>
     )
   }
+}
+
+TodosComponent.propTypes={
+  todos: PropTypes.array,
+  onCreateTodo: PropTypes.func
 }
 
 export default TodosComponent

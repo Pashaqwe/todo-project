@@ -19,6 +19,9 @@ class TodosContainer extends Component {
   onCreateTodo = (event, name) => {
     console.log(name)
     event.preventDefault()
+    this.setState({
+      value: ''
+    })
   }
 
   onChange = (e) => {
