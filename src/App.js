@@ -1,9 +1,9 @@
 
-import ListComponent from './components/todos/ListComponent'
+import TodosContainer from './components/todos/TodosContainer'
 
 function App() {
   return (
-    <ListComponent/>
+    <TodosContainer/>
   );
 }
 
