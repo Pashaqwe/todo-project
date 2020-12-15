@@ -9,10 +9,6 @@ const Wrapper = styled.div`
   margin: 40px auto 10px;
 `
 
-const BottomInputAndBtnDiv = styled.div`
-  display: flex;
-`
-
 const TodoList = styled(List)`
   margin-bottom: 10px;
   font-weight: bold;
@@ -30,10 +26,7 @@ const TodoListItem = styled(List.Item)`
 `
 
 class TodosComponent extends Component {
-
-    state={
-        value:''
-    }
+  
   renderTodos() {
     return this.props.todos.map((item) => (
       <TodoListItem key={item.id}>
@@ -45,11 +38,6 @@ class TodosComponent extends Component {
     ))
   }
 
-  onChange=(e)=>{
-    this.setState({
-        value: e.target.value
-    })
-  }
   render() {
     if (!this.props.todos.length) {
       return <TodoSpin />
@@ -57,9 +45,11 @@ class TodosComponent extends Component {
     return (
       <Wrapper>
         <TodoList bordered>{this.renderTodos()}</TodoList>
-        <form>
-          <Input type="text" onChange={this.onChange}></Input>
-          <Button onClick={()=>this.props.onCreateTodo(this.state.value)}>Добавить</Button>
+        <form
+          onSubmit={(event) => this.props.onCreateTodo(event, this.props.value)}
+        >
+          <Input value={this.props.value} type="text" onChange={this.props.onChange}></Input>
+          <Input type="submit" value="Отправить" />
         </form>
       </Wrapper>
     )
