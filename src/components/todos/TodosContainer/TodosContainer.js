@@ -7,16 +7,22 @@ class TodosContainer extends Component {
     todos: [],
   }
 
-  componentDidMount() {
+  getRequest(){
     API.get(`todos`).then((response) => {
       this.setState({
         todos: response.data,
       })
     })
   }
+  
+  componentDidMount() {
+    this.getRequest()
+  }
 
   onCreateTodo = (name) => {
-    console.log(name)
+    API.post(`todos` , {name}).then(
+      this.getRequest()
+    )
   }
 
   render() {
