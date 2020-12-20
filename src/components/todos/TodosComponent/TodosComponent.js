@@ -4,18 +4,19 @@ import { Spin, List, Button, Input, Form } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 
 const Wrapper = styled.div`
   width: 30%;
   margin: 40px auto 10px;
 `
-const TodoForm = styled(Form)`
+const StyledForm = styled(Form)`
   display: flex;
 `
-const TodoInput = styled(Input)`
+const StyledInput = styled(Input)`
   display: flex;
 `
-const TodoButton = styled(Button)`
+const StyledButton = styled(Button)`
   display: flex;
 `
 const TodoList = styled(List)`
@@ -49,8 +50,8 @@ class TodosComponent extends Component {
     ))
   }
 
-  onSubmit = (event, name) => {
-    this.props.onCreateTodo(event, name)
+  onSubmit = (name) => {
+    this.props.onCreateTodo(name)
     this.setState({
       value: '',
     })
@@ -65,21 +66,24 @@ class TodosComponent extends Component {
     if (!this.props.todos.length) {
       return <TodoSpin />
     }
+
     return (
       <Wrapper>
         <TodoList bordered>{this.renderTodos()}</TodoList>
-        <TodoForm onFinish={() => this.onSubmit(this.state.value)}>
+        <StyledForm onFinish={() => this.onSubmit(this.state.value)}>
           <Form.Item>
-            <TodoInput
-              value={this.state.value}
-              type="text"
-              onChange={this.onChange}
-            ></TodoInput>
+            <ErrorBoundary error={this.props.error}>
+              <StyledInput
+                value={this.state.value}
+                type="text"
+                onChange={this.onChange}
+              ></StyledInput>
+            </ErrorBoundary>
           </Form.Item>
-          <TodoButton type="primary" htmlType="submit">
+          <StyledButton type="primary" htmlType="submit">
             Submit
-          </TodoButton>
-        </TodoForm>
+          </StyledButton>
+        </StyledForm>
       </Wrapper>
     )
   }
