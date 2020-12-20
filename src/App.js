@@ -1,10 +1,7 @@
-
 import TodosContainer from './components/todos/TodosContainer'
 
 function App() {
-  return (
-    <TodosContainer/>
-  );
+  return <TodosContainer />
 }
 
-export default App;
+export default App
