@@ -4,7 +4,7 @@ import { Spin, List, Button, Input, Form } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
+import ErrorBoundary from '../../ErrorBoundary'
 
 const Wrapper = styled.div`
   width: 30%;
