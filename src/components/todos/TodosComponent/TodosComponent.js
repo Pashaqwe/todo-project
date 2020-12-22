@@ -1,67 +1,39 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css'
-import { Spin, List, Button, Input, Form } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { Spin, List, Card } from 'antd'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import ErrorBoundary from '../../ErrorBoundary'
+import FormComponent from '../../FormComponents/MainComponent/FormComponent'
 
 const Wrapper = styled.div`
-  width: 30%;
+  width: 50%;
   margin: 40px auto 10px;
 `
-const StyledForm = styled(Form)`
-  display: flex;
-`
-const StyledInput = styled(Input)`
-  display: flex;
-`
-const StyledButton = styled(Button)`
-  display: flex;
-`
-const TodoList = styled(List)`
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 20px;
-`
+
 const TodoSpin = styled(Spin)`
   margin-top: 100px;
   display: flex;
   justify-content: center;
 `
 
-const TodoListItem = styled(List.Item)`
-  display: flex;
-  justify-content: space-between;
+const StyledCard = styled(Card)`
+  background: linear-gradient(
+      rgba(135, 60, 255, 0.4),
+      rgba(135, 60, 255, 0) 80%
+    ),
+    linear-gradient(
+      -45deg,
+      rgba(120, 155, 255, 0.9) 25%,
+      rgba(255, 160, 65, 0.9) 75%
+    );
+  height: 200px;
+  color: white;
+  font-weight: bold;
+  word-wrap: break-word;
+  border-radius: 20px;
 `
 
 class TodosComponent extends Component {
-  state = {
-    value: '',
-  }
-  renderTodos() {
-    return this.props.todos.map((item) => (
-      <TodoListItem key={item.id}>
-        {item.name}
-        <Button type="primary">
-          <DeleteOutlined />
-        </Button>
-      </TodoListItem>
-    ))
-  }
-
-  onSubmit = (name) => {
-    this.props.onCreateTodo(name)
-    this.setState({
-      value: '',
-    })
-  }
-
-  onChange = (e) => {
-    this.setState({
-      value: e.target.value,
-    })
-  }
   render() {
     if (!this.props.todos.length) {
       return <TodoSpin />
@@ -69,21 +41,19 @@ class TodosComponent extends Component {
 
     return (
       <Wrapper>
-        <TodoList bordered>{this.renderTodos()}</TodoList>
-        <StyledForm onFinish={() => this.onSubmit(this.state.value)}>
-          <Form.Item>
-            <ErrorBoundary error={this.props.error}>
-              <StyledInput
-                value={this.state.value}
-                type="text"
-                onChange={this.onChange}
-              ></StyledInput>
-            </ErrorBoundary>
-          </Form.Item>
-          <StyledButton type="primary" htmlType="submit">
-            Submit
-          </StyledButton>
-        </StyledForm>
+        <List
+          grid={{ gutter: 16, column: 3, wrap: true }}
+          dataSource={this.props.todos}
+          renderItem={(item) => (
+            <List.Item>
+              <StyledCard title={`Заметка №${item.id}`}>{item.name}</StyledCard>
+            </List.Item>
+          )}
+        />
+        <FormComponent
+          onCreateTodo={this.props.onCreateTodo}
+          error={this.props.error}
+        />
       </Wrapper>
     )
   }
