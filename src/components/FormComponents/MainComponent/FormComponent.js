@@ -33,15 +33,14 @@ class FormComponent extends Component {
     value: '',
   }
 
-  onSubmit = (name) => {
+  onSubmit = (name, e) => {
     this.props.onCreateTodo(name)
     this.setState({
-      value: '',
+      value: ''
     })
   }
 
   onChange = (e) => {
-    console.log(this.state.value)
     this.setState({
       value: e.target.value,
     })

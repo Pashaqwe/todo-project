@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import FormComponent from '../../FormComponents/MainComponent/FormComponent'
 
+
 const Wrapper = styled.div`
   width: 50%;
   margin: 40px auto 10px;
@@ -17,20 +18,22 @@ const TodoSpin = styled(Spin)`
 `
 
 const StyledCard = styled(Card)`
-  background: linear-gradient(
-      rgba(135, 60, 255, 0.4),
-      rgba(135, 60, 255, 0) 80%
-    ),
-    linear-gradient(
-      -45deg,
-      rgba(120, 155, 255, 0.9) 25%,
-      rgba(255, 160, 65, 0.9) 75%
-    );
+  font-family: AmaticBold;
   height: 200px;
-  color: white;
   font-weight: bold;
+  font-size:18px;
   word-wrap: break-word;
-  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  border-color:white;
+  border-radius:10px;
+  margin-bottom:40px;
+  &:hover{
+      transition: 1s;
+    transform: scale(1.05);
+  }
+  &:not(:hover){
+    transition: 1s;
+  }
 `
 
 class TodosComponent extends Component {
@@ -42,7 +45,7 @@ class TodosComponent extends Component {
     return (
       <Wrapper>
         <List
-          grid={{ gutter: 16, column: 3, wrap: true }}
+          grid={{ gutter: 40, column: 3, wrap: true }}
           dataSource={this.props.todos}
           renderItem={(item) => (
             <List.Item>
