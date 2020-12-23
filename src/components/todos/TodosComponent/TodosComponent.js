@@ -5,10 +5,15 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import FormComponent from '../../FormComponents/MainComponent/FormComponent'
 
+const Screen = styled.div`
+  background-color: #156064;
+  height: 100vh;
+`
 
 const Wrapper = styled.div`
-  width: 50%;
-  margin: 40px auto 10px;
+  width: 60%;
+  margin: 0 auto;
+  padding-top: 100px;
 `
 
 const TodoSpin = styled(Spin)`
@@ -16,23 +21,28 @@ const TodoSpin = styled(Spin)`
   display: flex;
   justify-content: center;
 `
-
+const StyledFormComponent = styled(FormComponent)`
+  position: relative;
+  display: flex;
+  width: 100%;
+`
 const StyledCard = styled(Card)`
-  font-family: AmaticBold;
-  height: 200px;
+  background: #00c49a;
+  color: white;
+  height: 350px;
   font-weight: bold;
-  font-size:18px;
+  font-size: 18px;
   word-wrap: break-word;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-  border-color:white;
-  border-radius:10px;
-  margin-bottom:40px;
-  &:hover{
-      transition: 1s;
-    transform: scale(1.05);
-  }
-  &:not(:hover){
-    transition: 1s;
+  border-color: #00c49a;
+  border-radius: 5px;
+  transition: 0.6s;
+  transform: rotatex(60deg) translatey(-100px) translatez(-100px);
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.5);
+  &:hover {
+    transform: rotatex(0deg);
+    transform: rotatez(0deg);
+    transition: 0.6s;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
   }
 `
 
@@ -43,21 +53,25 @@ class TodosComponent extends Component {
     }
 
     return (
-      <Wrapper>
-        <List
-          grid={{ gutter: 40, column: 3, wrap: true }}
-          dataSource={this.props.todos}
-          renderItem={(item) => (
-            <List.Item>
-              <StyledCard title={`Заметка №${item.id}`}>{item.name}</StyledCard>
-            </List.Item>
-          )}
-        />
-        <FormComponent
-          onCreateTodo={this.props.onCreateTodo}
-          error={this.props.error}
-        />
-      </Wrapper>
+      <Screen>
+        <Wrapper>
+          <List
+            grid={{ gutter: 100, column: 3, wrap: true }}
+            dataSource={this.props.todos}
+            renderItem={(item) => (
+              <List.Item>
+                <StyledCard title={`Заметка №${item.id}`}>
+                  {item.name}
+                </StyledCard>
+              </List.Item>
+            )}
+          />
+          <StyledFormComponent
+            onCreateTodo={this.props.onCreateTodo}
+            error={this.props.error}
+          />
+        </Wrapper>
+      </Screen>
     )
   }
 }

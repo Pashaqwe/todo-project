@@ -3,9 +3,8 @@ import styled from 'styled-components'
 import { Button, Form } from 'antd'
 import InputComponent from './InputComponent/InputComponent'
 
-const StyledButton = styled(Button)`
+const StyledForm = styled(Form)`
   display: flex;
-  margin: 0 auto;
 `
 
 class FormComponent extends Component {
@@ -16,7 +15,7 @@ class FormComponent extends Component {
   onSubmit = (name) => {
     this.props.onCreateTodo(name)
     this.setState({
-      value: ''
+      value: '',
     })
     this.formRef.current.resetFields()
   }
@@ -26,21 +25,22 @@ class FormComponent extends Component {
       value: e.target.value,
     })
   }
-  formRef=React.createRef()
+  formRef = React.createRef()
 
   render() {
     return (
-      <Form onFinish={() => this.onSubmit(this.state.value)} ref={this.formRef}>
+      <StyledForm
+        onFinish={() => this.onSubmit(this.state.value)}
+        ref={this.formRef}
+      >
         <InputComponent
           value={this.state.value}
           type="text"
           onChange={this.onChange}
           error={this.props.error}
         />
-        <StyledButton type="primary" htmlType="submit">
-          Submit
-        </StyledButton>
-      </Form>
+        <Button htmlType="submit">Submit</Button>
+      </StyledForm>
     )
   }
 }
