@@ -5,15 +5,23 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import FormComponent from '../../FormComponents/MainComponent/FormComponent'
 
-const Screen = styled.div`
-  background-color: #156064;
-  height: 100vh;
+const Wrapper = styled.div`
+  display:flex;
+  width: 100%;
+  min-height: 100vh;
 `
 
-const Wrapper = styled.div`
-  width: 60%;
-  margin: 0 auto;
-  padding-top: 100px;
+const RightPanel = styled.div`
+  width: 70%;
+  min-height: 100vh;
+  padding: 100px 50px;
+  background-color: #CBC0D3;
+`
+
+const LeftPanel = styled.div`
+width:30%;
+background-color: #8E9AAF;
+min-height: 100vh;
 `
 
 const TodoSpin = styled(Spin)`
@@ -22,18 +30,16 @@ const TodoSpin = styled(Spin)`
   justify-content: center;
 `
 const StyledFormComponent = styled(FormComponent)`
-  position: relative;
-  display: flex;
-  width: 100%;
+margin-top:40px;
 `
 const StyledCard = styled(Card)`
-  background: #00c49a;
+  background-color: #4B4A67;
   color: white;
   height: 350px;
   font-weight: bold;
   font-size: 18px;
   word-wrap: break-word;
-  border-color: #00c49a;
+  border-color: #4B4A67;
   border-radius: 5px;
   transition: 0.6s;
   transform: rotatex(60deg) translatey(-100px) translatez(-100px);
@@ -53,25 +59,27 @@ class TodosComponent extends Component {
     }
 
     return (
-      <Screen>
-        <Wrapper>
+      <Wrapper>
+        <LeftPanel>
+        <StyledFormComponent
+            onCreateTodo={this.props.onCreateTodo}
+            error={this.props.error}
+          />
+        </LeftPanel>
+        <RightPanel>
           <List
             grid={{ gutter: 100, column: 3, wrap: true }}
             dataSource={this.props.todos}
             renderItem={(item) => (
               <List.Item>
-                <StyledCard title={`Заметка №${item.id}`}>
+                <StyledCard title={``}>
                   {item.name}
                 </StyledCard>
               </List.Item>
             )}
           />
-          <StyledFormComponent
-            onCreateTodo={this.props.onCreateTodo}
-            error={this.props.error}
-          />
-        </Wrapper>
-      </Screen>
+        </RightPanel>
+      </Wrapper>
     )
   }
 }
