@@ -19,6 +19,10 @@ class FormComponent extends Component {
       this.setState({
         errorDescription: 'Сервер не отвечает, попробуйте позже',
       })
+    } else if (!this.state.value.length) {
+      this.setState({
+        errorDescription: 'Поле не должно быть пустым',
+      })
     } else {
       this.props.onCreateTodo(name)
       this.setState({
@@ -27,23 +31,19 @@ class FormComponent extends Component {
     }
   }
 
-  validateField() {
-    let errorDescription
-    if (!this.state.value.length) {
-      errorDescription = 'Поле не должно быть пустым'
-    } else if (this.state.value.trim().length < 3) {
-      errorDescription = 'Заметка должна быть длиннее 3 символов'
-    }
-    this.setState({
-      errorDescription,
-    })
-  }
-
   onChange = (e) => {
     this.setState({
       value: e.target.value,
     })
-    this.validateField()
+    if (this.state.value.trim().length < 3) {
+      this.setState({
+        errorDescription: 'Заметка должна быть длиннее 3 символов',
+      })
+    } else {
+      this.setState({
+        errorDescription: '',
+      })
+    }
   }
 
   render() {
@@ -56,9 +56,12 @@ class FormComponent extends Component {
             type="text"
             onChange={this.onChange}
             error={this.props.error}
-            hasError={!this.state.errorDescription.length}
+            hasError={!this.state.errorDescription}
           />
-          <StyledButton disabled={!this.state.errorDescription.length} onSubmit={(e) => this.onSubmit(this.state.value, e)}>
+          <StyledButton
+            disabled={this.state.errorDescription}
+            onSubmit={(e) => this.onSubmit(this.state.value, e)}
+          >
             Submit
           </StyledButton>
         </Wrapper>

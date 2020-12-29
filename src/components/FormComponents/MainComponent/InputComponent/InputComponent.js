@@ -3,7 +3,7 @@ import StyledInput from './StyledInputComponent'
 
 class InputComponent extends Component {
   render() {
-    if (this.props.hasError || this.props.error) {
+    if (!this.props.hasError || this.props.error) {
       return (
         <StyledInput
           errorInput
