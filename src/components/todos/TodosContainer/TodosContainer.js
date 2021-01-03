@@ -19,7 +19,7 @@ class TodosContainer extends Component {
   onCreateTodo = (name) => {
     let newArray
 
-    API.post(`todos`, { name })
+    API.post(`todoss`, { name })
       .then((response) => {
         newArray = [...this.state.todos, { name }]
         this.setState({
@@ -47,7 +47,7 @@ class TodosContainer extends Component {
   render() {
     return (
       <TodosComponent
-        error={this.state.hasError}
+        serverError={this.state.hasError}
         todos={this.state.todos}
         onCreateTodo={this.onCreateTodo}
       />

@@ -22,7 +22,7 @@ class TodosComponent extends Component {
         <LeftPanel>
           <StyledFormComponent
             onCreateTodo={this.props.onCreateTodo}
-            error={this.props.error}
+            serverError={this.props.serverError}
           />
         </LeftPanel>
         <RightPanel>

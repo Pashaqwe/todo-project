@@ -3,26 +3,15 @@ import StyledInput from './StyledInputComponent'
 
 class InputComponent extends Component {
   render() {
-    if (!this.props.hasError || this.props.error) {
-      return (
-        <StyledInput
-          errorInput
-          type="text"
-          placeholder="Введите заметку"
-          onChange={this.props.onChange}
-          value={this.props.value}
-        />
-      )
-    } else {
-      return (
-        <StyledInput
-          type="text"
-          placeholder="Введите заметку"
-          onChange={this.props.onChange}
-          value={this.props.value}
-        />
-      )
-    }
+    return (
+      <StyledInput
+        errorInput={this.props.errorDescription}
+        type="text"
+        placeholder="Введите заметку"
+        onChange={this.props.onChange}
+        value={this.props.value}
+      />
+    )
   }
 }
 
