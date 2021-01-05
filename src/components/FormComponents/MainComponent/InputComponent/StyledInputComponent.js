@@ -5,7 +5,7 @@ const StyledInput = styled.input`
   outline:none;
   border: ${(props) =>
     props.errorInput ? '3px solid #EE6C4D' : '3px solid #E5FFDE'};
-  height:40px;
+  height:32px;
   width:70%;
 `
 export default StyledInput

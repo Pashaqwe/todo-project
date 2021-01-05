@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import 'antd/dist/antd.css'
-import { List } from 'antd'
+// import 'antd/dist/antd.css'
 import PropTypes from 'prop-types'
 import {
   Wrapper,
@@ -9,12 +8,13 @@ import {
   TodoSpin,
   StyledFormComponent,
   StyledCard,
+  StyledList,
 } from './StyledTodosComponent'
 
 class TodosComponent extends Component {
   render() {
     if (!this.props.todos.length) {
-      return <TodoSpin />
+      return <TodoSpin/>
     }
 
     return (
@@ -26,15 +26,11 @@ class TodosComponent extends Component {
           />
         </LeftPanel>
         <RightPanel>
-          <List
-            grid={{ gutter: 75, column: 3, wrap: true }}
-            dataSource={this.props.todos}
-            renderItem={(item) => (
-              <List.Item>
-                <StyledCard title={``}>{item.name}</StyledCard>
-              </List.Item>
-            )}
-          />
+          <StyledList>
+            {this.props.todos.map((item) => {
+              return <StyledCard key={item.id}>{item.name}</StyledCard>
+            })}
+          </StyledList>
         </RightPanel>
       </Wrapper>
     )

@@ -19,7 +19,7 @@ class TodosContainer extends Component {
   onCreateTodo = (name) => {
     let newArray
 
-    API.post(`todoss`, { name })
+    API.post(`todos`, { name })
       .then((response) => {
         newArray = [...this.state.todos, { name }]
         this.setState({
