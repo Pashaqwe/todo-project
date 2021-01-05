@@ -27,20 +27,9 @@ class TodosContainer extends Component {
         })
       })
       .catch((error) => {
-        if (error.response) {
-          this.setState({
-            hasError: true,
-          })
-        } else if (error.request) {
-          this.setState({
-            hasError: true,
-          })
-          console.log(this.hasError)
-        } else {
-          this.setState({
-            hasError: true,
-          })
-        }
+        this.setState({
+          hasError: true,
+        })
       })
   }
 

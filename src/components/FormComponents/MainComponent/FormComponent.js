@@ -15,7 +15,6 @@ class FormComponent extends Component {
 
 
   onSubmit = (name, e) => {
-    console.log(this.state.errorDescription)
     e.preventDefault()
     if (this.props.serverError ) {
       this.setState({
@@ -48,8 +47,7 @@ class FormComponent extends Component {
   onChange = (e) => {
     this.setState({
       value: e.target.value,
-    })
-    this.validationFields()
+    },()=>{this.validationFields()})
   }
 
   render() { 
@@ -66,7 +64,7 @@ class FormComponent extends Component {
             ValidationError={!this.state.errorDescription}
           />
           <StyledButton
-            disabled={this.state.errorDescription}
+            disabled={this.state.errorDescription || !this.state.value}
             onSubmit={(e) => this.onSubmit(this.state.value, e)}
           >
             Submit
