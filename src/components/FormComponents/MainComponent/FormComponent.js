@@ -17,9 +17,7 @@ class FormComponent extends Component {
   onSubmit = (name, e) => {
     e.preventDefault()
     if (this.props.serverError ) {
-      this.setState({
-        errorDescription: 'Сервер не отвечает, попробуйте позже',
-      })
+      return
     } else {
       this.props.onCreateTodo(name)
       this.setState({
