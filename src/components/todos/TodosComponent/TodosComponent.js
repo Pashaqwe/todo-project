@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import 'antd/dist/antd.css'
 import PropTypes from 'prop-types'
 import {
   Wrapper,
@@ -9,12 +8,16 @@ import {
   StyledFormComponent,
   StyledCard,
   StyledList,
+  ErrorWindow,
+  CloseButton,
+  ErrorWindowHeding,
+  ErrorWindowDescription,
 } from './StyledTodosComponent'
 
 class TodosComponent extends Component {
   render() {
     if (!this.props.todos.length) {
-      return <TodoSpin/>
+      return <TodoSpin />
     }
 
     return (
@@ -24,6 +27,17 @@ class TodosComponent extends Component {
             onCreateTodo={this.props.onCreateTodo}
             serverError={this.props.serverError}
           />
+          <ErrorWindow styledServerError={this.props.serverError}>
+            <ErrorWindowHeding>
+              Ой, что то пошло не так... &#128552;
+            </ErrorWindowHeding>
+            <ErrorWindowDescription>
+              Ошибка сервера. Пожалуйста, попробуйте позднее
+            </ErrorWindowDescription>
+            <CloseButton
+              onClick={() => this.props.closeErrorWindow()}
+            ></CloseButton>
+          </ErrorWindow>
         </LeftPanel>
         <RightPanel>
           <StyledList>

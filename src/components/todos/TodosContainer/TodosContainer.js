@@ -5,7 +5,7 @@ import TodosComponent from '../TodosComponent'
 class TodosContainer extends Component {
   state = {
     todos: [],
-    hasError: false,
+    serverError: false,
   }
 
   componentDidMount() {
@@ -17,26 +17,31 @@ class TodosContainer extends Component {
   }
 
   onCreateTodo = (name) => {
-    let newArray
-
-    API.post(`todos`, { name })
+    API.post(`todoss`, { name })
       .then((response) => {
-        newArray = [...this.state.todos, { name }]
         this.setState({
-          todos: newArray,
+          todos: [...this.state.todos, { name }]
         })
       })
       .catch((error) => {
         this.setState({
-          hasError: true,
+          serverError: true,
         })
       })
   }
 
+  closeErrorWindow = ()=>{
+    this.setState({
+      serverError: false,
+    })
+  }
+  
+
   render() {
     return (
       <TodosComponent
-        serverError={this.state.hasError}
+        closeErrorWindow={this.closeErrorWindow}
+        serverError={this.state.serverError}
         todos={this.state.todos}
         onCreateTodo={this.onCreateTodo}
       />
