@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Heart } from 'react-spinners-css'
+import { Heart ,Ring } from 'react-spinners-css'
 import FormComponent from '../../FormComponents/MainComponent/FormComponent'
 
 export const Wrapper = styled.div`
@@ -31,7 +31,7 @@ export const ErrorWindow = styled.div`
   height: 100px;
   border-radius: 6px;
   position: absolute;
-  bottom: 200px;
+  top: 200px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 `
 
@@ -79,6 +79,15 @@ export const TodoSpin = styled(Heart)`
   left: 0;
   margin: auto;
 `
+export const RingSpiner= styled(Ring)`
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+margin: auto;
+`
+
 export const StyledFormComponent = styled(FormComponent)`
   margin-top: 40px;
 `
