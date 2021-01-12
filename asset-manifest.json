@@ -1,25 +1,27 @@
 {
   "files": {
     "main.css": "/todo-project/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/todo-project/static/js/main.434400a8.chunk.js",
-    "main.js.map": "/todo-project/static/js/main.434400a8.chunk.js.map",
-    "runtime-main.js": "/todo-project/static/js/runtime-main.6e880b35.js",
-    "runtime-main.js.map": "/todo-project/static/js/runtime-main.6e880b35.js.map",
-    "static/css/2.c4f0d674.chunk.css": "/todo-project/static/css/2.c4f0d674.chunk.css",
-    "static/js/2.dbd3a4e1.chunk.js": "/todo-project/static/js/2.dbd3a4e1.chunk.js",
-    "static/js/2.dbd3a4e1.chunk.js.map": "/todo-project/static/js/2.dbd3a4e1.chunk.js.map",
-    "static/js/3.553a9bde.chunk.js": "/todo-project/static/js/3.553a9bde.chunk.js",
-    "static/js/3.553a9bde.chunk.js.map": "/todo-project/static/js/3.553a9bde.chunk.js.map",
+    "main.js": "/todo-project/static/js/main.a6269d28.chunk.js",
+    "main.js.map": "/todo-project/static/js/main.a6269d28.chunk.js.map",
+    "runtime-main.js": "/todo-project/static/js/runtime-main.21d8a0fe.js",
+    "runtime-main.js.map": "/todo-project/static/js/runtime-main.21d8a0fe.js.map",
+    "static/css/2.d0c3a5bb.chunk.css": "/todo-project/static/css/2.d0c3a5bb.chunk.css",
+    "static/js/2.eb821f25.chunk.js": "/todo-project/static/js/2.eb821f25.chunk.js",
+    "static/js/2.eb821f25.chunk.js.map": "/todo-project/static/js/2.eb821f25.chunk.js.map",
+    "static/js/3.27246433.chunk.js": "/todo-project/static/js/3.27246433.chunk.js",
+    "static/js/3.27246433.chunk.js.map": "/todo-project/static/js/3.27246433.chunk.js.map",
+    "static/js/4.e612d9fc.chunk.js": "/todo-project/static/js/4.e612d9fc.chunk.js",
+    "static/js/4.e612d9fc.chunk.js.map": "/todo-project/static/js/4.e612d9fc.chunk.js.map",
     "index.html": "/todo-project/index.html",
-    "static/css/2.c4f0d674.chunk.css.map": "/todo-project/static/css/2.c4f0d674.chunk.css.map",
+    "static/css/2.d0c3a5bb.chunk.css.map": "/todo-project/static/css/2.d0c3a5bb.chunk.css.map",
     "static/css/main.6dea0f05.chunk.css.map": "/todo-project/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.dbd3a4e1.chunk.js.LICENSE.txt": "/todo-project/static/js/2.dbd3a4e1.chunk.js.LICENSE.txt"
+    "static/js/2.eb821f25.chunk.js.LICENSE.txt": "/todo-project/static/js/2.eb821f25.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.6e880b35.js",
-    "static/css/2.c4f0d674.chunk.css",
-    "static/js/2.dbd3a4e1.chunk.js",
+    "static/js/runtime-main.21d8a0fe.js",
+    "static/css/2.d0c3a5bb.chunk.css",
+    "static/js/2.eb821f25.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.434400a8.chunk.js"
+    "static/js/main.a6269d28.chunk.js"
   ]
 }
