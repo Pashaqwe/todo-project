@@ -17,10 +17,11 @@ class TodosContainer extends Component {
   }
 
   onCreateTodo = (name) => {
-    API.post(`todoss`, { name })
+    API.post(`todos`, { name })
       .then((response) => {
+        const { name, id } = response.data
         this.setState({
-          todos: [...this.state.todos, { name }]
+          todos: [...this.state.todos, { name, id }],
         })
       })
       .catch((error) => {
@@ -30,16 +31,23 @@ class TodosContainer extends Component {
       })
   }
 
-  closeErrorWindow = ()=>{
+  onDeleteTodo = (id) => {
+    API.delete(`todos/${id}`).then((response) => {
+      const todos = this.state.todos.filter((item) => item.id !== id)
+      this.setState({ todos })
+    })
+  }
+
+  closeErrorWindow = () => {
     this.setState({
       serverError: false,
     })
   }
-  
 
   render() {
     return (
       <TodosComponent
+        onDeleteTodo={this.onDeleteTodo}
         closeErrorWindow={this.closeErrorWindow}
         serverError={this.state.serverError}
         todos={this.state.todos}
