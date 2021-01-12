@@ -1,18 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import PropTypes from 'prop-types'
+import ErrorWindowComponent from '../../ErrorWindowComponent'
 import {
   Wrapper,
   RightPanel,
   LeftPanel,
   TodoSpin,
   StyledFormComponent,
-  StyledCard,
-  StyledList,
-  ErrorWindow,
-  CloseButton,
-  ErrorWindowHeding,
-  ErrorWindowDescription,
+  RingSpiner,
 } from './StyledTodosComponent'
+
+const LazyTodoList = React.lazy(() => import('../../TodoListComponent'))
 
 class TodosComponent extends Component {
   render() {
@@ -27,24 +25,18 @@ class TodosComponent extends Component {
             onCreateTodo={this.props.onCreateTodo}
             serverError={this.props.serverError}
           />
-          <ErrorWindow styledServerError={this.props.serverError}>
-            <ErrorWindowHeding>
-              Ой, что то пошло не так... &#128552;
-            </ErrorWindowHeding>
-            <ErrorWindowDescription>
-              Ошибка сервера. Пожалуйста, попробуйте позднее
-            </ErrorWindowDescription>
-            <CloseButton
-              onClick={() => this.props.closeErrorWindow()}
-            ></CloseButton>
-          </ErrorWindow>
+          <ErrorWindowComponent
+            serverError={this.props.serverError}
+            closeErrorWindow={this.props.closeErrorWindow}
+          />
         </LeftPanel>
         <RightPanel>
-          <StyledList>
-            {this.props.todos.map((item) => {
-              return <StyledCard key={item.id}>{item.name}</StyledCard>
-            })}
-          </StyledList>
+          <Suspense fallback={<RingSpiner color="#FFFFFF" />}>
+            <LazyTodoList
+              todos={this.props.todos}
+              onDeleteTodo={this.props.onDeleteTodo}
+            />
+          </Suspense>
         </RightPanel>
       </Wrapper>
     )
