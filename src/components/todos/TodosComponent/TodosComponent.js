@@ -33,8 +33,11 @@ class TodosComponent extends Component {
         <RightPanel>
           <Suspense fallback={<RingSpiner color="#FFFFFF" />}>
             <LazyTodoList
+              saveChange={this.props.saveChange}
               todos={this.props.todos}
               onDeleteTodo={this.props.onDeleteTodo}
+              fetchTodos={this.props.fetchTodos}
+              onChangeTodo={this.props.onChangeTodo}
             />
           </Suspense>
         </RightPanel>
