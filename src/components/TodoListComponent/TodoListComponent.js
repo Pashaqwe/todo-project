@@ -3,14 +3,17 @@ import {
   StyledCard,
   StyledList,
   StyledParagraph,
-  StyledButton,
+  TrashButton,
   StyledDate,
+  ChangeButton,
+  ConfirmButton,
+  StyledInput,
 } from './StyledTodoListComponent'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Moment from 'react-moment'
 import 'moment-timezone'
 class TodoListComponent extends Component {
-  state = { inputValue:'' }
+  state = { inputValue: '' }
   render() {
     return (
       <InfiniteScroll
@@ -23,37 +26,46 @@ class TodoListComponent extends Component {
           {this.props.todos.map((item) => {
             return (
               <StyledCard isDisabled={item.disabled} key={item.id}>
-                <StyledParagraph
-                  
-                >
+                <StyledParagraph>
                   {item.editing ? (
                     <span>
-                      <input
+                      <StyledInput
                         defaultValue={item.name}
-                        onChange={(e) => this.props.onChangeTodo(item.id, e.target.value)}
+                        onChange={(e) =>
+                          this.props.onChangeTodo(item.id, e.target.value)
+                        }
                       />
-                      <button onClick={() => this.props.saveChange(item.id)}>
-                  Save
-                </button>
+                      <ConfirmButton
+                        onClick={() => this.props.saveChange(item.id)}
+                      >
+                       <img alt='' src="https://img.icons8.com/color/25/000000/verified-account.png"/>
+                      </ConfirmButton>
                     </span>
                   ) : (
                     item.name
                   )}
                   {console.log(item.editing)}
                 </StyledParagraph>
-                
-                <button onClick={() => this.props.onChangeTodo(item.id)}>Change Todo</button>
-                <StyledDate>
-                  <Moment format="DD/MM/YYYY">{item.created_at}</Moment>
-                </StyledDate>
-                <StyledButton onClick={() => this.props.onDeleteTodo(item.id)}>
+
+                <ChangeButton onClick={() => this.props.onChangeTodo(item.id)}>
                   {
                     <img
                       alt=""
-                      src="https://img.icons8.com/bubbles/40/000000/trash.png"
+                      src="https://img.icons8.com/android/20/000000/pencil.png"
                     />
                   }
-                </StyledButton>
+                </ChangeButton>
+                <StyledDate>
+                  <Moment format="DD/MM/YYYY">{item.created_at}</Moment>
+                </StyledDate>
+                <TrashButton onClick={() => this.props.onDeleteTodo(item.id)}>
+                  {
+                    <img
+                      alt=""
+                      src="https://img.icons8.com/material-rounded/20/000000/delete-trash.png"
+                    />
+                  }
+                </TrashButton>
               </StyledCard>
             )
           })}
