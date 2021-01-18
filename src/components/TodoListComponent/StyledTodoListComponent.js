@@ -3,12 +3,14 @@ import styled from 'styled-components'
 export const StyledList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+  align-content: flex-start;
+  justify-content: space-evenly;
 `
 
 export const StyledCard = styled.li`
   height: 150px;
   width: 20%;
+  min-width:200px;
   list-style-type: none;
   background-color: ${(props) =>
     props.isDisabled ? 'rgb(128,128,128,0.5)' : '#FFFFFF'};
@@ -29,12 +31,25 @@ export const StyledDate = styled.p`
   position: absolute;
   left: 15px;
   bottom: 15px;
-  margin-bottom:10px;
-  margin-left:10px;
-  font-size:13px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 13px;
 `
 
-export const StyledButton = styled.button`
+export const ChangeButton = styled.button`
+  position: absolute;
+  right: 50px;
+  bottom: 15px;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  &:hover {
+    cursor: pointer;
+  }
+`
+
+export const TrashButton = styled.button`
   position: absolute;
   right: 15px;
   bottom: 15px;
@@ -45,4 +60,23 @@ export const StyledButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+`
+
+export const ConfirmButton = styled.button`
+  position: absolute;
+  right: 15px;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  &:hover {
+    cursor: pointer;
+  }
+`
+export const StyledInput = styled.input`
+  height: 20px;
+  width: 87%;
+  border-radius: 6px;
+  outline: none;
+  border: 2px solid #a3a3cd;
 `
