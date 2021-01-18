@@ -1,6 +1,5 @@
 import React, { Component, Suspense } from 'react'
 import PropTypes from 'prop-types'
-import ErrorWindowComponent from '../../ErrorWindowComponent'
 import {
   Wrapper,
   RightPanel,
@@ -23,9 +22,6 @@ class TodosComponent extends Component {
         <LeftPanel>
           <StyledFormComponent
             onCreateTodo={this.props.onCreateTodo}
-            serverError={this.props.serverError}
-          />
-          <ErrorWindowComponent
             serverError={this.props.serverError}
             closeErrorWindow={this.props.closeErrorWindow}
           />
