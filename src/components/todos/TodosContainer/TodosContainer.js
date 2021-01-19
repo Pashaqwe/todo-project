@@ -48,14 +48,18 @@ class TodosContainer extends Component {
   }
 
   onChangeTodo = (id, name) => {
-    const todo = this.state.todos.find((item) => item.id === id)
-    console.log(todo.name)
-    todo.editing = true
-    this.setState({
-      inputValue: this.state.inputValue === undefined ? todo.name : name,
+    API.put(`todos/${id}`, { name }).then((response) => {
+      const todo = this.state.todos.find((item) => item.id === id)
+      todo.editing = true
+      this.setState({
+        inputValue:
+          this.state.inputValue === undefined || this.state.inputValue === ''
+            ? todo.name
+            : name,
+      })
+      const todos = this.state.todos.filter((item) => item.id !== id)
+      this.setState({ ...todos, todo })
     })
-    const todos = this.state.todos.filter((item) => item.id !== id)
-    this.setState({ ...todos, todo })
   }
 
   saveChange = (id) => {
