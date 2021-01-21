@@ -9,8 +9,6 @@ export const Wrapper = styled.div`
 `
 
 export const RightPanel = styled.div`
-  position: absolute;
-  right: 0;
   width: 70%;
   min-height: 100vh;
   padding-top: 50px;
@@ -18,10 +16,10 @@ export const RightPanel = styled.div`
 `
 
 export const LeftPanel = styled.div`
-  position: fixed;
   width: 30%;
   background-color: #8e9aaf;
   min-height: 100vh;
+  min-width: 300px;
 `
 
 export const TodoSpin = styled(Heart)`
@@ -44,4 +42,3 @@ export const RingSpiner = styled(Ring)`
 export const StyledFormComponent = styled(FormComponent)`
   margin-top: 40px;
 `
-

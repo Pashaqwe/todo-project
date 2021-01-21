@@ -1,21 +1,12 @@
 import React, { Component } from 'react'
-import {
-  ErrorWindow,
-  ErrorWindowHeding,
-  ErrorWindowDescription,
-  CloseButton,
-} from './StyledErrorWindow'
+import { ErrorWindow, CloseButton } from './StyledErrorWindow'
 
 class ErrorWindowComponent extends Component {
   render() {
     return (
       <ErrorWindow styledServerError={this.props.serverError}>
-        <ErrorWindowHeding>
-          Ой, что то пошло не так... &#128552;
-        </ErrorWindowHeding>
-        <ErrorWindowDescription>
-          Ошибка сервера. Пожалуйста, попробуйте позднее
-        </ErrorWindowDescription>
+        <h3>Ой, что то пошло не так... &#128552;</h3>
+        <p>Ошибка сервера. Пожалуйста, попробуйте позднее</p>
         <CloseButton
           onClick={() => this.props.closeErrorWindow()}
         ></CloseButton>

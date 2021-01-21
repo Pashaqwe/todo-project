@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import {
-  StyledForm,
-  Wrapper,
-  StyledParagraph,
-  StyledButton,
-} from './StyledFormComponent'
+import { StyledForm, Wrapper, StyledParagraph } from './StyledFormComponent'
 import InputComponent from './InputComponent/InputComponent'
+import ErrorWindowComponent from '../../ErrorWindowComponent'
 
 class FormComponent extends Component {
   state = {
@@ -13,10 +9,9 @@ class FormComponent extends Component {
     errorDescription: '',
   }
 
-
   onSubmit = (name, e) => {
     e.preventDefault()
-    if (this.props.serverError ) {
+    if (this.props.serverError) {
       return
     } else {
       this.props.onCreateTodo(name)
@@ -43,12 +38,17 @@ class FormComponent extends Component {
   }
 
   onChange = (e) => {
-    this.setState({
-      value: e.target.value,
-    },()=>{this.validationFields()})
+    this.setState(
+      {
+        value: e.target.value,
+      },
+      () => {
+        this.validationFields()
+      }
+    )
   }
 
-  render() { 
+  render() {
     return (
       <StyledForm onSubmit={(e) => this.onSubmit(this.state.value, e)}>
         <Wrapper>
@@ -61,14 +61,12 @@ class FormComponent extends Component {
             serverError={this.props.serverError}
             ValidationError={!this.state.errorDescription}
           />
-          <StyledButton
-            disabled={this.state.errorDescription || !this.state.value}
-            onSubmit={(e) => this.onSubmit(this.state.value, e)}
-          >
-            Submit
-          </StyledButton>
+          <StyledParagraph>{this.state.errorDescription}</StyledParagraph>
+          <ErrorWindowComponent
+            serverError={this.props.serverError}
+            closeErrorWindow={this.props.closeErrorWindow}
+          />
         </Wrapper>
-        <StyledParagraph>{this.state.errorDescription}</StyledParagraph>
       </StyledForm>
     )
   }

@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
-import StyledInput from './StyledInputComponent'
+import StyledInput, { Wrapper, StyledButton } from './StyledInputComponent'
 
 class InputComponent extends Component {
   render() {
     return (
-      <StyledInput
-        errorInput={this.props.errorDescription}
-        type="text"
-        placeholder="Введите заметку"
-        onChange={this.props.onChange}
-        value={this.props.value}
-      />
+      <Wrapper>
+        <StyledInput
+          errorInput={this.props.errorDescription}
+          type="text"
+          placeholder="Введите заметку"
+          onChange={this.props.onChange}
+          value={this.props.value}
+        />
+        <StyledButton
+          disabled={this.props.errorDescription || !this.props.value}
+          onSubmit={(e) => this.onSubmit(this.state.value, e)}
+        >
+          Submit
+        </StyledButton>
+      </Wrapper>
     )
   }
 }
